@@ -52,7 +52,7 @@ export async function POST(req: Request) {
       metadata: {
         cartId,
       },
-      success_url: `${host}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${host}`,
       cancel_url: `${host}`,
     });
     console.log("Created Stripe session:", session);

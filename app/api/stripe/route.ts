@@ -29,6 +29,7 @@ export async function OPTIONS() {
 export async function POST(req: Request) {
   const { host, products, cartId } = await req.json();
   const selectedProducts: Product[] = products;
+  console.log("selectedProducts:", selectedProducts);
   try {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
@@ -63,6 +64,6 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error("Error fetching user:", error);
-    return NextResponse.json({ error: "User not found" }, { status: 404,headers: {"Access-Control-Allow-Origin": allowedOrigin,}});
+    return NextResponse.json({ error: error }, { status: 404,headers: {"Access-Control-Allow-Origin": allowedOrigin,}});
   }
 }
